@@ -37,17 +37,22 @@
 // console.log(clients);
 
 function permutations(string) {
-    if(string.length < 2) return string
     
+    if(string.length === 1){
+    //   arr.push(string)
+        return [...string]
+    } 
+   
     const arr = []
+    
     for(let i = 0; i < string.length; i++){
       const letter = string[i]
-      if(indexOf(letter) !== i) continue
+      if(string.indexOf(letter) !== i) continue
       const subStrFirst = string.slice(0, i)
       const subStrSecond = string.slice(i + 1, string.length)
       const concatStr = subStrFirst + subStrSecond 
-      
-      for(let permutation of  permutations(concatStr)){
+      console.log(concatStr);
+      for(let permutation of permutations(concatStr)){
         arr.push(letter + permutation)
       }
       
@@ -55,3 +60,10 @@ function permutations(string) {
       return arr;
   
   }
+//   console.log(permutations('aabb'));
+  console.log(permutations('ab'));
+
+//   for(let permutation of 'aabb'){
+//     console.log(permutation);
+//     // arr.push(letter + permutation)
+//   }
