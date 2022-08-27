@@ -82,53 +82,49 @@
 // }
 
 // console.log(convertToRoman(3312));
+
 function fromRoman(str){
     const rom = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
-    const dec = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+    const dec = [1000, 900, 500, 400,  100,  90,   50,  40,   10,  9,    5,    4,   1];
     let num = 0
     const arr = str.split('')
     console.log(arr);
-    let letter = ''
-    let length = 0
-    if(arr[0] === 'M'){
-           while(length < arr.length){
-for (const iterator of arr) {
-    if(iterator === 'M'){
-    letter = iterator
-    num += 1000
-    length += 1
-    }
-    if(iterator === 'C'){
-        letter = iterator
-        num -= 100
-        length += 1
-        }
-        if(iterator === 'D'){
-            letter = iterator
-            num += 500
-            length += 1
-            }
+for (let index = 0; index < arr.length; index++) {
+    const element = arr[index];
+   switch (element) {
+    case rom[0]:
+        arr[index - 1] === rom[4] ? num += 800 : num += dec[0]
+        break;
+        case rom[4]:
+            arr[index - 1] === rom[8] ? num += 80 : num += dec[4]
+            break;
+            case rom[2]:
+                arr[index - 1] === rom[4] ? num += 300 : num += dec[2]
+                break;
+                case rom[6]:
+                    arr[index - 1] === rom[8] ? num += 30 : num += dec[6]
+                    break;
+                    case rom[8]:
+                        arr[index - 1] === rom[12] ? num += 8 : num += dec[8]
+                        break;
+                        case rom[10]:
+                            arr[index - 1] === rom[12] ? num += 3 : num += dec[10]
+                            break;
+                            case rom[12]:
+                            num += dec[12]
+                                break;
+    default:
+        break;
+   }
 }
-    }
-    }
- 
-    for (let index = 0; index < str.length; index++) {
-        const element = str[index];
-        if(index === 0){
-             if(element === "M"){
-            // num += 1000
-        }}
-       
-        // if()
-        
-    }
     return num
 }
-console.log(fromRoman('MCM'));
+// console.log(fromRoman('XXI'));
+
 // Create a RomanNumerals class
 class RomanNumerals{
      static rom = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
-
+     static dec = [1000, 900, 500, 400,  100,  90,   50,  40,   10,  9,    5,    4,   1];
      static toRoman(num) {
         const arrStrOfNum = num.toString().split('')
             while (arrStrOfNum.length < 4) {
@@ -209,7 +205,44 @@ class RomanNumerals{
            }
         return arr.join('')
     }
+
+
+    static fromRoman(str){
+        let num = 0
+        const arr = str.split('')
+
+    for (let index = 0; index < arr.length; index++) {
+        const element = arr[index];
+       switch (element) {
+        case this.rom[0]:
+            arr[index - 1] === this.rom[4] ? num += 800 : num += this.dec[0]
+            break;
+            case this.rom[4]:
+                arr[index - 1] === this.rom[8] ? num += 80 : num += this.dec[4]
+                break;
+                case this.rom[2]:
+                    arr[index - 1] === this.rom[4] ? num += 300 : num += this.dec[2]
+                    break;
+                    case this.rom[6]:
+                        arr[index - 1] === this.rom[8] ? num += 30 : num += this.dec[6]
+                        break;
+                        case this.rom[8]:
+                            arr[index - 1] === this.rom[12] ? num += 8 : num += this.dec[8]
+                            break;
+                            case this.rom[10]:
+                                arr[index - 1] === this.rom[12] ? num += 3 : num += this.dec[10]
+                                break;
+                                case this.rom[12]:
+                                num += this.dec[12]
+                                    break;
+        default:
+            break;
+       }
+    }
+        return num
+    }
 }
 
 console.log(RomanNumerals.toRoman(1666));
+console.log(RomanNumerals.fromRoman('MDCLXVI'));
 
